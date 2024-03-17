@@ -5,10 +5,10 @@ import Sidebar from "../../components/Dashboard/sidebar"
 function Dashboard() {
   return (
     <>
-      <div className="flex gap-96">
+      <div className="flex gap-80 ">
 
         <div><Sidebar /></div>
-        <div className='flex-initial w-96 mt-10'>
+        <div className='flex-initial mt-10'>
           <Outlet />
         </div>
       </div>

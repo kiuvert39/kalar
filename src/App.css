@@ -17,26 +17,24 @@
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.image-section{
+  width: 410px;
+  height: 670px;
+  overflow: hidden;
+  margin-bottom: 40px;
 }
 
-.App-link {
-  color: #61dafb;
+.main-bg{
+  background-color: rgb(238, 236, 236);
+}
+.image-upload{
+  width: 390px;
+  height: 840px;
+  background-color: rgb(167, 154, 154);
+  position: relative;
+  top: 15;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.subnit-button{
+  background-color: #616161;
 }
