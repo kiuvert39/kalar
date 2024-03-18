@@ -1,17 +1,28 @@
 import { Input, Typography, Textarea, Button } from "@material-tailwind/react"
 import { productSchema } from "../../models/productSchema"
-import { useForm, Controller } from "react-hook-form"
+import { useForm, Controller} from "react-hook-form"
 import { zodResolver } from '@hookform/resolvers/zod'
 import { FormValue } from "../../models/productSchema"
+import { useState } from 'react';
 
 
 
 function NewProduct() {
-  const { register, handleSubmit, control, formState: { errors } } = useForm<FormValue>({ resolver: zodResolver(productSchema) })
+  const { register, handleSubmit, control, formState: { errors }} = useForm<FormValue>({ resolver: zodResolver(productSchema) })
+
+  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (files) {
+        setSelectedFiles(Array.from(files));
+    }
+};
+
+
 
 
   const onSubmit = (data: FormValue) => {
-    
     console.log(data);
     console.log('clicked')
   };
@@ -39,9 +50,9 @@ function NewProduct() {
                   containerProps={{ className: "min-w-[150px]" }} crossOrigin={undefined} />}
               />
               <div className=" mt-4">
-              {errors.Name && typeof errors.Name.message === 'string' && (
-                <span className=" text-red-800">{errors.Name.message}</span>
-              )}
+                {errors.Name && typeof errors.Name.message === 'string' && (
+                  <span className=" text-red-800">{errors.Name.message}</span>
+                )}
               </div>
             </div>
 
@@ -53,9 +64,9 @@ function NewProduct() {
                 render={({ field }) => <Textarea size="md" label="Description"  {...register('Descript')} placeholder={undefined} />}
               />
               <div className=" mt-4">
-              {errors.Descript && typeof errors.Descript.message === 'string' && (
-                <span className=" text-red-800">{errors.Descript.message}</span>
-              )}
+                {errors.Descript && typeof errors.Descript.message === 'string' && (
+                  <span className=" text-red-800">{errors.Descript.message}</span>
+                )}
               </div>
             </div>
             <div className="  pt-4">
@@ -73,9 +84,9 @@ function NewProduct() {
                   containerProps={{ className: "min-w-[150px]" }} crossOrigin={undefined} />}
               />
               <div className=" mt-4">
-              {errors.Category && typeof errors.Category.message === 'string' && (
-                <span className=" text-red-800">{errors.Category.message}</span>
-              )}
+                {errors.Category && typeof errors.Category.message === 'string' && (
+                  <span className=" text-red-800">{errors.Category.message}</span>
+                )}
               </div>
 
             </div>
@@ -94,10 +105,10 @@ function NewProduct() {
                   {...register('Brand')}
                   containerProps={{ className: "min-w-[150px]" }} crossOrigin={undefined} />}
               />
-             <div className=" mt-4">
-              {errors.Brand && typeof errors.Brand.message === 'string' && (
-                <span className=" text-red-800">{errors.Brand.message}</span>
-              )}
+              <div className=" mt-4">
+                {errors.Brand && typeof errors.Brand.message === 'string' && (
+                  <span className=" text-red-800">{errors.Brand.message}</span>
+                )}
               </div>
             </div>
 
@@ -113,14 +124,14 @@ function NewProduct() {
                     labelProps={{
                       className: "hidden",
                     }}
-                    {...register('Price',{valueAsNumber : true})}
+                    {...register('Price', { valueAsNumber: true })}
                     containerProps={{ className: "min-w-[150px]" }} crossOrigin={undefined} />}
                 />
                 <div className=" mt-4">
-              {errors.Price && typeof errors.Price.message === 'string' && (
-                <span className=" text-red-800">{errors.Price.message}</span>
-              )}
-              </div>
+                  {errors.Price && typeof errors.Price.message === 'string' && (
+                    <span className=" text-red-800">{errors.Price.message}</span>
+                  )}
+                </div>
 
               </div>
 
@@ -136,38 +147,45 @@ function NewProduct() {
                     labelProps={{
                       className: "hidden",
                     }}
-                    {...register('Quontity', {valueAsNumber: true})}
+                    {...register('Quontity', { valueAsNumber: true })}
                     containerProps={{ className: "min-w-[150px]" }} crossOrigin={undefined} />}
                 />
-               <div className=" mt-4">
-              {errors.Quontity && typeof errors.Quontity.message === 'string' && (
-                <span className=" text-red-800">{errors.Quontity.message}</span>
-              )}
-              </div>
+                <div className=" mt-4">
+                  {errors.Quontity && typeof errors.Quontity.message === 'string' && (
+                    <span className=" text-red-800">{errors.Quontity.message}</span>
+                  )}
+                </div>
               </div>
             </div>
           </div>
           <section className="image-section ">
             <div className=" max-w-96 h-96 bg-gray-500 rounded-lg overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1682407186023-12c70a4a35e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80" className="object-cover overflow-hidden w-full h-full rounded-lg" alt="img" />
+            {selectedFiles.length > 0 && (
+               
+                    <img className="object-cover overflow-hidden w-full h-full rounded-lg" src={URL.createObjectURL(selectedFiles[0])} alt="First Image" />
+                
+            )}
             </div>
-
-           <div className=" mt-14 w-96 bg-blue-gray-300 h-32 flex justify-center border-dashed border-2 border-b-black cursor-pointer" >
+            
+            <div className=" mt-14 w-96 bg-blue-gray-300 h-32 flex justify-center border-dashed border-2 border-b-black cursor-pointer" >
               <Controller
                 name="Images"
                 control={control}
-                render={({ field }) => <input type="file" className=" mt-12 ml-28 cursor-pointer " accept="image/*" multiple 
-                {...register('Images')}
-               />}
+                render={({ field }) => <input type="file" className=" mt-12 ml-28 cursor-pointer " accept="image/*"
+                  {...register('Images')}
+                  onChange={handleImageChange}
+                  multiple
+                />}
               />
+
               <div className=" mt-4">
-              {errors.Images && typeof errors.Images.message === 'string' && (
-                <span className=" text-red-800">{errors.Images.message}</span>
-              )}
+                {errors.Images && typeof errors.Images.message === 'string' && (
+                  <span className=" text-red-800">{errors.Images.message}</span>
+                )}
               </div>
-            </div> 
-            <div>
-              <Button type='submit' variant='gradient' color='black' placeholder={undefined}>submit</Button>
+            </div>
+            <div className=" mt-4 ml-36">
+              <Button type='submit' variant='gradient' size='lg' color='black' placeholder={undefined}>submit</Button>
             </div>
           </section>
         </form>
@@ -177,3 +195,4 @@ function NewProduct() {
 }
 
 export default NewProduct
+
