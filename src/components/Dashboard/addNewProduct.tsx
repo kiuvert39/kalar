@@ -148,6 +148,8 @@ function NewProduct() {
                       className: "hidden",
                     }}
                     {...register('Quontity', { valueAsNumber: true })}
+                    type='number'
+                    required
                     containerProps={{ className: "min-w-[150px]" }} crossOrigin={undefined} />}
                 />
                 <div className=" mt-4">
