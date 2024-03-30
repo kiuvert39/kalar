@@ -7,6 +7,7 @@ import {
   Input
 } from "@material-tailwind/react";
 import { useState, useEffect } from "react";
+import {Link} from 'react-router-dom'
 
 
 
@@ -66,7 +67,7 @@ function NavbarMain() {
           >
             KallarTech
           </Typography>
-          <div className="relative flex w-full gap-2 md:w-max">
+          {/* <div className="relative flex w-full gap-2 md:w-max">
             <Input placeholder={undefined}
               type="search"
               color="gray"
@@ -82,7 +83,7 @@ function NavbarMain() {
             >
               Search
             </Button>
-          </div>
+          </div> */}
           <div className="flex items-center gap-4">
             <div className="mr-4 hidden lg:block">{navList}</div>
             <div className="flex items-center gap-x-1">
@@ -91,8 +92,9 @@ function NavbarMain() {
                 size="sm"
                 className="hidden lg:inline-block"
               >
-                <span>Log In</span>
+                <Link  to={{ pathname: "/Auth/login"}}>Login</Link>
               </Button>
+              <Link to='Auth/signup'>
               <Button placeholder={undefined}
                 variant="gradient"
                 size="sm"
@@ -100,6 +102,7 @@ function NavbarMain() {
               >
                 <span>Sign in</span>
               </Button>
+              </Link>
             </div>
             <IconButton placeholder={undefined}
               variant="text"
@@ -144,11 +147,13 @@ function NavbarMain() {
           {navList}
           <div className="flex items-center gap-x-1">
             <Button fullWidth variant="text" size="sm" className="" placeholder={undefined}>
-              <span>Log In</span>
+            <Link  to={{ pathname: "/Auth/login"}}>Login</Link>
             </Button>
+            <Link to='Auth/signup'>
             <Button fullWidth variant="gradient" size="sm" className="" placeholder={undefined}>
-              <span>Sign in</span>
+              Sign in
             </Button>
+            </Link>
           </div>
         </Collapse>
       </Navbar>

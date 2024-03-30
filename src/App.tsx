@@ -5,6 +5,9 @@ import Home from './pages/Home';
 import Orders from './components/Dashboard/Orders';
 import Dashboard from './pages/dashborad/Dashboard';
 import NewProduct from './components/Dashboard/addNewProduct';
+import Register from './components/Auth/register';
+import Notfoundpage from './pages/notfound.page';
+import Login from './components/Auth/login';
 
 
 
@@ -14,10 +17,14 @@ function App() {
     <NavbarMain/>
     <Routes>
       <Route path='/' element={<Home/>}/>
+      <Route path='/Auth/signup' element={<Register/>}/>
+      <Route path='Auth/login' element={<Login/>}/>
       <Route path='/dashboard' element={<Dashboard/>}>
           <Route path='add_new_product' element={<NewProduct/>}/>
           <Route path='orders' element={<Orders/>}/>
       </Route>
+
+      <Route path='*' element={<Notfoundpage/>}/>
     </Routes>
   </Router>
   );

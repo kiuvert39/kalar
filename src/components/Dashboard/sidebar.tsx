@@ -1,6 +1,7 @@
 import { Card, Typography, List, ListItem, ListItemPrefix, Accordion, AccordionHeader, AccordionBody, Avatar, Button } from '@material-tailwind/react'
 import { PresentationChartBarIcon, ShoppingBagIcon, InboxIcon, UserIcon, PowerIcon} from '@heroicons/react/24/solid'
 import { ChevronDownIcon, } from "@heroicons/react/24/outline";
+import {Link} from 'react-router-dom'
 import { useState } from 'react';
 
 function Sidebar() {
@@ -32,16 +33,16 @@ function Sidebar() {
             <ListItemPrefix placeholder={undefined}>
               <UserIcon className="h-5 w-5" />
             </ListItemPrefix>
-            <a href="/profile_setting"> Profile</a>
+            <Link to="/profile_setting"> Profile</Link>
           </ListItem>
 
           <ListItem placeholder={undefined}>
             <ListItemPrefix placeholder={undefined}>
               <ShoppingBagIcon className="h-5 w-5" />
             </ListItemPrefix>
-            <a href="dashboard/add_new_product">
+            <Link to="dashboard/add_new_product">
               Add Products
-            </a>
+            </Link>
             
           </ListItem>
 
