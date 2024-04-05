@@ -1,11 +1,15 @@
 import { Typography, Button, Input } from "@material-tailwind/react";
-import { useState } from "react";
 import { Link} from "react-router-dom";
 import { Facebook } from "../images/facebook";
 import { Google } from "../images/google";
 import { userSchema, userValue } from "../../models/userSchema";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 function Register() {
   const {
@@ -16,27 +20,39 @@ function Register() {
     reset,
     formState: { errors, isSubmitting },
   } = useForm<userValue>({ resolver: zodResolver(userSchema) });
+  const navigate = useNavigate();
 
-  
+
+
+
   const onSubmit = async(data: userValue,e:any) => {
     try{
-      await new Promise((resolve)=>setTimeout(resolve,1000))
-     
-      console.log(data);
+     const user = await axios.post('http://localhost:5005/api/auth/register',{
+        Name: data.Name,
+        email: data.email,
+        password: data.password
+      })
+        console.log(user);
+        toast.success('Success Notification ', { position: 'top-right' }); 
+        navigate('/Auth/login')
+      
       reset();
     }
     catch(error){
-      setError("root", { message: "email is already taken" });
+      console.error('Error registering user:', error);
+      toast.error('Failed to create account. Please try again.');
     }
    
   };
   return (
     <div className="md:flex -gap-1">
+     <ToastContainer />
       <div
         className=" mt-7 pl-4 justify-center md:w-96 md:pt-4 rounded-3xl opacity-80
    md:ml-96 md:mt-8 md:pb-5 md:bg-blue-gray-100 "
       >
         <form onSubmit={handleSubmit(onSubmit)}>
+        
           <div className=" justify-center">
             <div className=" -ml-2  w-auto sm:-ml-7 sm:justify-center mb-5">
               <Typography
@@ -119,7 +135,7 @@ function Register() {
                   size="md"
                   {...register("confirm_password")}
                   crossOrigin={true}
-                  label="password"
+                  label="confirm password"
                   placeholder={undefined}
                   color="green"
                 />

@@ -1,18 +1,15 @@
 import {
   Typography,
   Button,
-  IconButton,
-  Collapse,
   Input,
 } from "@material-tailwind/react";
-import { useState } from "react";
-import { Link, redirect } from "react-router-dom";
+import { Link,} from "react-router-dom";
 import { Facebook } from "../images/facebook";
 import { Google } from "../images/google";
-import { userSchema, userValue } from "../../models/userSchema";
-import { Controller, useForm, Form } from "react-hook-form";
+import { Controller, useForm} from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema, loginValue } from "../../models/loginSchema";
+import axios from "axios";
 
 
 function Login() {
@@ -27,12 +24,14 @@ function Login() {
 
   const onSubmit = async(data: loginValue,e:any) => {
     try{
-      await new Promise((resolve)=>setTimeout(resolve,1000))
-      console.log(data);
+        const user = await axios.post('http://localhost:5005/api/auth/login',{
+        email: data.email,
+        password: data.password})
+        console.log(user);
       reset();
     }
     catch(error){
-      setError('root',{message: "email is already taken"})
+      console.log(error)
     }
   };
   

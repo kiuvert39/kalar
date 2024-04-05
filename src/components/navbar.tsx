@@ -4,7 +4,7 @@ import {
   Button,
   IconButton,
   Collapse,
-  Input
+
 } from "@material-tailwind/react";
 import { useState, useEffect } from "react";
 import {Link} from 'react-router-dom'
@@ -30,7 +30,7 @@ function NavbarMain() {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="#" className="flex items-center">
+        <a href="/click" className="flex items-center">
           Home
         </a>
       </Typography>
@@ -40,7 +40,7 @@ function NavbarMain() {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="#" className="flex items-center">
+        <a href="/cl" className="flex items-center">
           About
         </a>
       </Typography>
@@ -50,7 +50,7 @@ function NavbarMain() {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="#" className="flex items-center">
+        <a href="/click" className="flex items-center">
           Contact
         </a>
       </Typography>
@@ -62,7 +62,7 @@ function NavbarMain() {
         <div className="flex items-center justify-between text-blue-gray-900">
           <Typography placeholder={undefined}
             as="a"
-            href="#"
+            href="/click"
             className="mr-4 cursor-pointer py-1.5 font-medium"
           >
             KallarTech

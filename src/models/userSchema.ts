@@ -1,6 +1,7 @@
 import { z, ZodType } from 'zod';
 
 export type userValue ={
+    preventDefault(): unknown;
     Name: string;
     email: string;
     password: string;
