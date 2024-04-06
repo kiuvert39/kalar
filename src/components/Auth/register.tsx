@@ -5,10 +5,10 @@ import { Google } from "../images/google";
 import { userSchema, userValue } from "../../models/userSchema";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useSignup } from "../../hooks/useSignup";
 
 
 function Register() {
@@ -16,26 +16,20 @@ function Register() {
     register,
     handleSubmit,
     control,
-    setError,
     reset,
     formState: { errors, isSubmitting },
   } = useForm<userValue>({ resolver: zodResolver(userSchema) });
   const navigate = useNavigate();
+
+  const {signup,error  } = useSignup()
 
 
 
 
   const onSubmit = async(data: userValue,e:any) => {
     try{
-     const user = await axios.post('http://localhost:5005/api/auth/register',{
-        Name: data.Name,
-        email: data.email,
-        password: data.password
-      })
-        console.log(user);
-        toast.success('Success Notification ', { position: 'top-right' }); 
+        await signup(data.Name,data.email,data.password)
         navigate('/Auth/login')
-      
       reset();
     }
     catch(error){
@@ -171,6 +165,7 @@ function Register() {
               <Link to={{ pathname: "/Auth/login" }}>Login</Link>
             </Typography>
           </div>
+          { error &&(<span className=" text-red-800 text-sm">{error}</span>) }
         </form>
       </div>
     </div>

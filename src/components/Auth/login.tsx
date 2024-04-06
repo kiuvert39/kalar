@@ -9,7 +9,8 @@ import { Google } from "../images/google";
 import { Controller, useForm} from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema, loginValue } from "../../models/loginSchema";
-import axios from "axios";
+import { useLogin } from "../../hooks/useLogin";
+
 
 
 function Login() {
@@ -21,16 +22,16 @@ function Login() {
     reset,
     formState: { errors, isSubmitting },
   } = useForm<loginValue>({ resolver: zodResolver(loginSchema) });
+  const {  login, error} = useLogin() 
+ 
 
   const onSubmit = async(data: loginValue,e:any) => {
     try{
-        const user = await axios.post('http://localhost:5005/api/auth/login',{
-        email: data.email,
-        password: data.password})
-        console.log(user);
+       await login(data.email, data.password)
       reset();
     }
-    catch(error){
+    catch(error: any){
+      setError(error.response.data.error.message,' ')
       console.log(error)
     }
   };
@@ -41,6 +42,7 @@ function Login() {
       className=" mt-7 pl-4 justify-center md:w-96 md:pt-5 rounded-3xl opacity-80
  md:ml-96 md:mt-8 md:pb-5 md:bg-blue-gray-100"
     >
+         { error &&(<span className=" text-red-800 text-sm">{error}</span>) }
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className=" justify-center">
           <div className=" -ml-2  w-auto sm:-ml-7 sm:justify-center">
@@ -130,6 +132,7 @@ function Login() {
             You don't an account? <Link  to={{ pathname: "/Auth/signup"}}>signup</Link>
           </Typography>
         </div>
+     
       </form>
     </div>
   </div>
