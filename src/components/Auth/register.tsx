@@ -23,9 +23,6 @@ function Register() {
 
   const {signup,error  } = useSignup()
 
-
-
-
   const onSubmit = async(data: userValue,e:any) => {
     try{
         await signup(data.Name,data.email,data.password)

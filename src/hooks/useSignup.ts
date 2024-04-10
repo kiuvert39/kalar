@@ -17,14 +17,6 @@ export const useSignup = () => {
          },
          
         )
-        if (!response){
-            setError(response.error)
-         }
-
-        if (response){
-            localStorage.setItem('user', JSON.stringify(response))
-            dispatch({type:'LOGIN', payload:response})
-         }
     }
 
    return { signup, error }

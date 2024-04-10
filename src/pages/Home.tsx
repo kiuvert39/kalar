@@ -1,32 +1,45 @@
-import React, { useEffect } from "react";
-import { ToastContainer} from "react-toastify";
+import React, { useEffect, useState } from "react";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useAuthContext } from "../hooks/useAuthContex";
 import axios from "axios";
+import { useAuth } from "../context/AuthContext";
+import Toast from "../utilities/Authtoast";
 
-
+axios.defaults.withCredentials = true;
 function Home() {
-const {user} = useAuthContext() 
+  const [message, setMessage] = useState("");
 
-useEffect(() => {
-  if (user) {
-    try{
-      const responds = axios.get('http://localhost:5005/api/auth/dash',{
-        withCredentials: true
-      })
-      console.log(responds)}
-      catch(error){
-        console.error('Error registering user:', error);
+  const { isLoggedIn, login, logout } = useAuth();
+  const [isUnauthorized, setIsUnauthorized] = useState<boolean>(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const responds = await axios.get(
+          "http://localhost:5005/api/auth/dash",
+          {
+            withCredentials: true,
+          }
+        );
+        console.log("hello", responds);
+        setMessage(responds.data.message);
+
+        setIsUnauthorized(!isLoggedIn);
+      } catch (error) {
+        console.error("Error registering user:", error);
       }
-  }
-
-},[user]) 
+    };
+    fetchData();
+  }, [isLoggedIn]);
   return (
     <div>
-      <button>Notify</button>
+      {isUnauthorized && <Toast message="User is not authenticated" />}
+
+      <button>Notify, {message}</button>
       <ToastContainer />
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;
