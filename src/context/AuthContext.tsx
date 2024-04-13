@@ -1,13 +1,10 @@
 import {
   createContext,
-  useReducer,
   ReactNode,
-  useEffect,
   useState,
   useContext,
 } from "react";
-import axios from "axios";
-import { buildGetDefaultMiddleware } from "@reduxjs/toolkit/dist/getDefaultMiddleware";
+
 
 interface AuthContextType {
   isLoggedIn: boolean;

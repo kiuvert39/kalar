@@ -3,7 +3,7 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  redirect,
+
 } from "react-router-dom";
 import NavbarMain from "./components/navbar";
 import Home from "./pages/Home";
@@ -14,7 +14,6 @@ import Register from "./components/Auth/register";
 import Notfoundpage from "./pages/notfound.page";
 import Login from "./components/Auth/login";
 import { ToastContainer } from "react-toastify";
-import { useAuth } from "./context/AuthContext";
 import Protected from "./components/protected";
 
 function App() {

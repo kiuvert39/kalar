@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useAuthContext } from "../hooks/useAuthContex";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
 import Toast from "../utilities/Authtoast";
@@ -10,7 +9,7 @@ axios.defaults.withCredentials = true;
 function Home() {
   const [message, setMessage] = useState("");
 
-  const { isLoggedIn, login, logout } = useAuth();
+  const { isLoggedIn} = useAuth();
   const [isUnauthorized, setIsUnauthorized] = useState<boolean>(false);
 
   useEffect(() => {
