@@ -22,7 +22,7 @@ const Login: React.FC = () => {
   const { login } = useLogin();
   const dispatch = useDispatch();
   const [requestError, setRquestError] = useState("");
-  const { currentUser } = useSelector((state: any) => state.user);
+  const  currentUser  = useSelector((state: any) => state.user.currentUser);
   const navigate = useNavigate();
   console.log("from login", currentUser);
 
@@ -42,11 +42,11 @@ const Login: React.FC = () => {
       }
     }
   };
-  useEffect(() => {
-    if (currentUser) {
-      navigate("/",{ replace: true });
-    }
-  }, [currentUser, navigate]);
+  // useEffect(() => {
+  //   if (currentUser) {
+  //     navigate("/");
+  //   }
+  // }, [currentUser, navigate]);
   return (
     <>
       <div className="md:flex -gap-1">
@@ -153,7 +153,7 @@ const Login: React.FC = () => {
                 placeholder={undefined}
                 className="text-sm font-normal font-poppins"
               >
-                You don't an account?{" "}
+                You don't an account?
                 <Link to={{ pathname: "/Auth/signup" }}>signup</Link>
               </Typography>
             </div>
