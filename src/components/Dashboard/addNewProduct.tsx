@@ -10,14 +10,14 @@ import { useState } from 'react';
 function NewProduct() {
   const { register, handleSubmit, control, formState: { errors }} = useForm<FormValue>({ resolver: zodResolver(productSchema) })
 
-  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+//   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
-    if (files) {
-        setSelectedFiles(Array.from(files));
-    }
-};
+//   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+//     const files = e.target.files;
+//     if (files) {
+//         setSelectedFiles(Array.from(files));
+//     }
+// };
 
 
 
@@ -170,7 +170,7 @@ function NewProduct() {
             </div> */}
             
             <div className=" mt-14 w-96 bg-blue-gray-300 h-32 flex justify-center border-dashed border-2 border-b-black cursor-pointer" >
-              <Controller
+              {/* <Controller
                 name="Images"
                 control={control}
                 render={({ field }) => <input type="file" className=" mt-12 ml-28 cursor-pointer " accept="image/*"
@@ -178,7 +178,7 @@ function NewProduct() {
                   onChange={handleImageChange}
                   multiple
                 />}
-              />
+              /> */}
 
               <div className=" mt-4">
                 {errors.Images && typeof errors.Images.message === 'string' && (
