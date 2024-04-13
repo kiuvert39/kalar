@@ -1,42 +1,49 @@
 import { Typography, Button, Input } from "@material-tailwind/react";
-import { useState } from "react";
 import { Link} from "react-router-dom";
 import { Facebook } from "../images/facebook";
 import { Google } from "../images/google";
 import { userSchema, userValue } from "../../models/userSchema";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useSignup } from "../../hooks/useSignup";
+
 
 function Register() {
   const {
     register,
     handleSubmit,
     control,
-    setError,
     reset,
     formState: { errors, isSubmitting },
   } = useForm<userValue>({ resolver: zodResolver(userSchema) });
+  const navigate = useNavigate();
 
-  
+  const {signup,error  } = useSignup()
+
   const onSubmit = async(data: userValue,e:any) => {
     try{
-      await new Promise((resolve)=>setTimeout(resolve,1000))
-     
-      console.log(data);
+        await signup(data.Name,data.email,data.password)
+        navigate('/Auth/login')
       reset();
     }
     catch(error){
-      setError("root", { message: "email is already taken" });
+      console.error('Error registering user:', error);
+      toast.error('Failed to create account. Please try again.');
     }
    
   };
   return (
     <div className="md:flex -gap-1">
+     <ToastContainer />
       <div
         className=" mt-7 pl-4 justify-center md:w-96 md:pt-4 rounded-3xl opacity-80
    md:ml-96 md:mt-8 md:pb-5 md:bg-blue-gray-100 "
       >
         <form onSubmit={handleSubmit(onSubmit)}>
+        
           <div className=" justify-center">
             <div className=" -ml-2  w-auto sm:-ml-7 sm:justify-center mb-5">
               <Typography
@@ -119,7 +126,7 @@ function Register() {
                   size="md"
                   {...register("confirm_password")}
                   crossOrigin={true}
-                  label="password"
+                  label="confirm password"
                   placeholder={undefined}
                   color="green"
                 />
@@ -155,6 +162,7 @@ function Register() {
               <Link to={{ pathname: "/Auth/login" }}>Login</Link>
             </Typography>
           </div>
+          { error &&(<span className=" text-red-800 text-sm">{error}</span>) }
         </form>
       </div>
     </div>
