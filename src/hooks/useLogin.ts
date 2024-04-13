@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useAuthContext } from "./useAuthContex";
+
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { signinSuccess, signinFailure } from "../store/user/userSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { signinSuccess } from "../store/user/userSlice";
+import { useDispatch} from "react-redux";
 
 export const useLogin = () => {
   const [error, setError] = useState(null);

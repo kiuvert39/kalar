@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { boolean } from "zod";
 
 
 export const initialState = {
