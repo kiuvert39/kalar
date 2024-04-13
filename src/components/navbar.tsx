@@ -7,9 +7,6 @@ import {
 } from "@material-tailwind/react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useAuthContext } from "../hooks/useAuthContex";
-import { useAuth } from "../context/AuthContext";
-import { Toast } from "react-toastify/dist/components";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { signout } from "../store/user/userSlice";
@@ -21,7 +18,6 @@ import axios from "axios";
 function NavbarMain() {
   const [openNav, setOpenNav] = useState(false);
   const   {currentUser} =   useSelector((state: any)  =>  state.user)
-  const { isLoggedIn, login, logout } = useAuth();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -36,11 +32,11 @@ function NavbarMain() {
 
    async function  HandleLoggout(){
       try{ 
-        const response = await axios.get("http://localhost:5005/api/auth/logout");
+       await axios.get("http://localhost:5005/api/auth/logout");
       dispatch(signout())
       navigate('/Auth/login')
     }catch(error){ 
-      console.log(error)
+      console.log(error);
     }}
 
   
