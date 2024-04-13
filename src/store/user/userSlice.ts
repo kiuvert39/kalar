@@ -19,9 +19,12 @@ export const initialState = {
         signinFailure: (state, action)=> {
             state.currentUser = action.payload;
             state.error = false
-        }
-    }
+        },
+        signout:(state)=>{
+            state.currentUser = null
+        } 
+     }
  })
 
- export const { signinFailure,signinSuccess } = userSlice.actions
+ export const { signinFailure,signinSuccess,signout } = userSlice.actions
  export default userSlice.reducer;

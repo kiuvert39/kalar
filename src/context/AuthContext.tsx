@@ -38,20 +38,7 @@ export const Authecontextprovider: React.FC<{ children: ReactNode }> = ({
 }) => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
-  const checkAuthStatus = async () => {
-    try {
-      const response = await axios.get("http://localhost:5005/api/auth/status");
-      setIsLoggedIn(response.data.authenticated);
-      console.log(response);
-    } catch (error) {
-      setIsLoggedIn(false);
-    }
-  };
-
-  useEffect(() => {
-    checkAuthStatus();
-  }, []);
-
+ 
   const login = () => {
     setIsLoggedIn(true);
   };

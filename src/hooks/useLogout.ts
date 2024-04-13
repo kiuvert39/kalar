@@ -1,12 +1,24 @@
+import axios from "axios";
 import { useAuthContext } from "./useAuthContex";
+import { signout } from "../store/user/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+;
 
-export const useLogout = () => {
-  const { dispatch } = useAuthContext();
+
+export const useLogout = async () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  
 
   async function logout() {
-    localStorage.removeItem("user");
-    dispatch({ type: "LOGOUT" });
-  }
-
-  return { logout };
+    try{ 
+      const response = await axios.get("http://localhost:5005/api/auth/logout");
+    dispatch(signout())
+    navigate('/Auth/login')
+  }catch(error){ 
+    console.log(error)
+  }}
+   return { logout };
 };

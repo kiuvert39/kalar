@@ -10,13 +10,20 @@ import { Link } from "react-router-dom";
 import { useAuthContext } from "../hooks/useAuthContex";
 import { useAuth } from "../context/AuthContext";
 import { Toast } from "react-toastify/dist/components";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { signout } from "../store/user/userSlice";
+import axios from "axios";
+
 
 
 
 function NavbarMain() {
   const [openNav, setOpenNav] = useState(false);
-
+  const   {currentUser} =   useSelector((state: any)  =>  state.user)
   const { isLoggedIn, login, logout } = useAuth();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
 
   useEffect(() => {
@@ -24,11 +31,19 @@ function NavbarMain() {
       "resize",
       () => window.innerWidth >= 960 && setOpenNav(false)
 
-    );
+    );}, []);
 
 
-  }, []);
+   async function  HandleLoggout(){
+      try{ 
+        const response = await axios.get("http://localhost:5005/api/auth/logout");
+      dispatch(signout())
+      navigate('/Auth/login')
+    }catch(error){ 
+      console.log(error)
+    }}
 
+  
 
   const navList = (
     <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
@@ -103,14 +118,14 @@ function NavbarMain() {
           <div className="flex items-center gap-12">
             <div className="mr-4 hidden lg:block">{navList}</div>
             <div className="flex items-center gap-x-1">
-              {isLoggedIn ? (
+              {currentUser ? (
                 <Link to="Auth/login">
                   <Button
                     placeholder={undefined}
                     variant="gradient"
                     size="sm"
                     className=""
-                    onClick={logout}
+                    onClick={HandleLoggout}
                   >
                     <span>LOG OUT</span>
                   </Button>
