@@ -161,13 +161,13 @@ function NewProduct() {
             </div>
           </div>
           <section className="image-section ">
-            <div className=" max-w-96 h-96 bg-gray-500 rounded-lg overflow-hidden">
+            {/* <div className=" max-w-96 h-96 bg-gray-500 rounded-lg overflow-hidden">
             {selectedFiles.length > 0 && (
                
                     <img className="object-cover overflow-hidden w-full h-full rounded-lg" src={URL.createObjectURL(selectedFiles[0])} alt="First Image" />
                 
             )}
-            </div>
+            </div> */}
             
             <div className=" mt-14 w-96 bg-blue-gray-300 h-32 flex justify-center border-dashed border-2 border-b-black cursor-pointer" >
               <Controller
