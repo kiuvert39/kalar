@@ -8,7 +8,7 @@ import { loginSchema, loginValue } from "../../models/loginSchema";
 import { useLogin } from "../../hooks/useLogin";
 import { signinFailure } from "../../store/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Login: React.FC = () => {
@@ -23,7 +23,6 @@ const Login: React.FC = () => {
   const dispatch = useDispatch();
   const [requestError, setRquestError] = useState("");
   const  currentUser  = useSelector((state: any) => state.user.currentUser);
-  const navigate = useNavigate();
   console.log("from login", currentUser);
 
   const onSubmit = async (data: loginValue, e: any) => {
