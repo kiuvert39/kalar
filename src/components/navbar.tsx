@@ -29,11 +29,13 @@ function NavbarMain() {
 
     );}, []);
 
+console.log('testing',currentUser);
 
    async function  HandleLoggout(){
       try{ 
        await axios.get("http://localhost:5005/api/auth/logout");
       dispatch(signout())
+      localStorage.removeItem('currentUser');
       navigate('/Auth/login')
     }catch(error){ 
       console.log(error);
@@ -114,7 +116,7 @@ function NavbarMain() {
           <div className="flex items-center gap-12">
             <div className="mr-4 hidden lg:block">{navList}</div>
             <div className="flex items-center gap-x-1">
-              {currentUser ? (
+              {currentUser !== "incorrect email or password"  && currentUser  !== null ? (
                 <Link to="Auth/login">
                   <Button
                     placeholder={undefined}
@@ -126,9 +128,8 @@ function NavbarMain() {
                     <span>LOG OUT</span>
                   </Button>
                 </Link>
-              ) :
-                (
-                  <>
+              ):             
+                (  <>
                     <Button
                       placeholder={undefined}
                       variant="text"
@@ -147,8 +148,7 @@ function NavbarMain() {
                         <span>Sign in</span>
                       </Button>
                     </Link>
-                  </>)
-              }
+                  </> ) }          
             </div>
             <IconButton
               placeholder={undefined}
