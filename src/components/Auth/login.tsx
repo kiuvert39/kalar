@@ -78,7 +78,7 @@ const Login: React.FC = () => {
               </div>
             </div>
             <div className=" pb-5  w-auto -ml-4 pl-4 pr-4 ">
-              <Controller
+            login             <Controller
                 name="email"
                 control={control}
                 render={({ field }) => (

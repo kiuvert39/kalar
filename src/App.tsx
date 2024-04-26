@@ -27,12 +27,12 @@ function App() {
         </Route>
         <Route path="/Auth/signup" element={<Register />} />
         <Route path="Auth/login" element={<Login />} />
-        <Route element={<Protected />}>
+        {/* <Route element={<Protected />}> */}
           <Route path="/dashboard" element={<Dashboard />}>
             <Route path="add_new_product" element={<NewProduct />} />
             <Route path="orders" element={<Orders />} />
           </Route>
-        </Route>
+        {/* </Route> */}
         <Route path="*" element={<Notfoundpage />} />
       </Routes>
     </Router>
