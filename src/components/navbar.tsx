@@ -4,6 +4,7 @@ import {
   Button,
   IconButton,
   Collapse,
+  Input,
 } from "@material-tailwind/react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -11,6 +12,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { signout } from "../store/user/userSlice";
 import axios from "axios";
+import Navicon from "./Navicon";
+import { IoPersonOutline } from "react-icons/io5";
+import { FiShoppingCart } from "react-icons/fi";
 
 
 
@@ -52,7 +56,7 @@ console.log('testing',currentUser);
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="/click" className="flex items-center">
+        <a href="/" className="flex items-center">
           Home
         </a>
       </Typography>
@@ -63,7 +67,7 @@ console.log('testing',currentUser);
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="/cl" className="flex items-center">
+        <a href="/#" className="flex items-center">
           About
         </a>
       </Typography>
@@ -77,11 +81,13 @@ console.log('testing',currentUser);
         <a href="/click" className="flex items-center">
           Contact
         </a>
+        
       </Typography>
+      <div className=""><Navicon/></div>
     </ul>
   );
   return (
-    <div className="sticky top-0">
+    <div className="fixed top-0 w-full z-50 bg-white shadow-md">
 
       <Navbar
         className="sticky top-0 z-10 h-max max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4"
@@ -94,25 +100,26 @@ console.log('testing',currentUser);
             href="/click"
             className="mr-4 cursor-pointer py-1.5 font-medium"
           >
-            KallarTech
+            <div  className="hidden">kalar tech</div>           
           </Typography>
-          {/* <div className="relative flex w-full gap-2 md:w-max">
+          <div className="relative flex w-full gap-2 md:w-max ">
             <Input placeholder={undefined}
               type="search"
               color="gray"
               label="Type here..."
-              className="pr-20"
+              className="pr-20  "
               containerProps={{
-                className: "min-w-[288px]",
+               
               }} crossOrigin={undefined} />
             <Button placeholder={undefined}
               size="sm"
               color="black"
-              className="!absolute right-1 top-1 rounded"
+              className="!absolute right-1 top-1 rounded  w-46"
             >
               Search
             </Button>
-          </div> */}
+          </div> 
+          
           <div className="flex items-center gap-12">
             <div className="mr-4 hidden lg:block">{navList}</div>
             <div className="flex items-center gap-x-1">
@@ -192,6 +199,7 @@ console.log('testing',currentUser);
         </div>
         <Collapse open={openNav}>
           {navList}
+         
           <div className="flex items-center gap-x-1">
             <Button
               fullWidth
@@ -200,7 +208,7 @@ console.log('testing',currentUser);
               className=""
               placeholder={undefined}
             >
-              <Link to={{ pathname: "/Auth/login" }}>Login</Link>
+              <Link to="Auth/login">Login</Link>
             </Button>
             <Link to="Auth/signup">
               <Button
@@ -213,8 +221,8 @@ console.log('testing',currentUser);
                 Sign in
               </Button>
             </Link>
-          </div>
-        </Collapse>
+          </div>          
+        </Collapse>      
       </Navbar>
 
     </div>
