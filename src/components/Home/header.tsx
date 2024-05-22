@@ -20,7 +20,7 @@ function Header() {
 
   return (
     <div className="w-full h-full  bg-black flex mt-16 gap-1 md:gap-52 md:justify-center md:items-center pb-8">
-      <div className=""> 
+      <div className="">
         <div className="flex pt-8 pl-5 gap-3">
           <img src="app.png" alt="apple" width="38px" />
           <Typography

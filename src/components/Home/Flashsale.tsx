@@ -15,16 +15,39 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import axios from "axios";
 
-interface Sliders {
-  slide: any;
-  image: string;
+interface Slides {
+  id: string;
+  Images: string[];
   title: string;
+  Name: string;
+  Price: number;
 }
-
-
-const Flashsale:  React.FC  =() =>{
+//remember  to  connect not found error from  backend to  frontend
+const Flashsale: React.FC = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768);
+  const [slideData, setSlideData] = useState<Slides[]>([]);
+
+  const getProducts = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:5005/api/product/get-all_products"
+      );
+      const updateData = response.data.message.map((product: any) => ({
+        ...product,
+        Images: product.Images[0],
+      }));
+      console.log("images", updateData);
+      setSlideData(updateData);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getProducts();
+  }, []);
 
   useEffect(() => {
     const handleResize = () => {
@@ -35,6 +58,10 @@ const Flashsale:  React.FC  =() =>{
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  function handleRatingClick(id: string, rating: number): void {
+    throw new Error("Function not implemented.");
+  }
 
   return (
     <>
@@ -50,147 +77,53 @@ const Flashsale:  React.FC  =() =>{
             stretch: 0,
             depth: 100,
             modifier: 1,
-            slideShadows: true,
+            slideShadows: false,
           }}
         >
-          {/* {slide.map((slide:Sliders) => (
-        <SwiperSlide key={slide.image}>
-          <img src={slide.image} alt={slide.title}/>
-        </SwiperSlide>
-      ))} */}
-          <SwiperSlide>
-            <ShoppingCard
-              name="Product 1"
-              description="Description of Product 1"
-              price={99.99}
-              imageSrc="phone.png"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <ShoppingCard
-              name="Product 1"
-              description="Description of Product 1"
-              price={99.99}
-              imageSrc="phone3.png"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <ShoppingCard
-              name="Product 1"
-              description="Description of Product 1"
-              price={99.99}
-              imageSrc="phone.png"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <ShoppingCard
-              name="Product 1"
-              description="Description of Product 1"
-              price={99.99}
-              imageSrc="phone2.png"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <ShoppingCard
-              name="Product 1"
-              description="Description of Product 1"
-              price={99.99}
-              imageSrc="phone.png"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <ShoppingCard
-              name="Product 1"
-              description="Description of Product 1"
-              price={99.99}
-              imageSrc="phone3.png"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <ShoppingCard
-              name="Product 1"
-              description="Description of Product 1"
-              price={99.99}
-              imageSrc="phone2.png"
-            />
-          </SwiperSlide>
+          {Array.isArray(slideData) &&
+            slideData.map((slide: Slides) => (
+              <SwiperSlide key={slide.id}>
+                <ShoppingCard
+                  name={slide.Name}
+                  price={slide.Price}
+                  imageSrc={slide.Images}
+                  onRatingClick={(rating: number) =>
+                    handleRatingClick(slide.id, rating)
+                  }
+                  rating={3}
+                />
+              </SwiperSlide>
+            ))}
         </Swiper>
       ) : (
         <Swiper
-        slidesPerView={5}
-        spaceBetween={20}
-        freeMode={true}
-        pagination={{
-          clickable: true,
-        }}
-        modules={[FreeMode, Pagination]}
-        className="mySwiper"
+          slidesPerView={5}
+          spaceBetween={20}
+          freeMode={true}
+          pagination={{
+            clickable: true,
+          }}
+          modules={[FreeMode, Pagination]}
+          className="mySwiper"
         >
-          {/* {slide.map((slide:Sliders) => (
-        <SwiperSlide key={slide.image}>
-          <img src={slide.image} alt={slide.title}/>
-        </SwiperSlide>
-      ))} */}
-          <SwiperSlide>
-            <ShoppingCard
-              name="Product 1"
-              description="Description of Product 1"
-              price={99.99}
-              imageSrc="phone.png"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <ShoppingCard
-              name="Product 1"
-              description="Description of Product 1"
-              price={99.99}
-              imageSrc="phone3.png"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <ShoppingCard
-              name="Product 1"
-              description="Description of Product 1"
-              price={99.99}
-              imageSrc="phone.png"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <ShoppingCard
-              name="Product 1"
-              description="Description of Product 1"
-              price={99.99}
-              imageSrc="phone2.png"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <ShoppingCard
-              name="Product 1"
-              description="Description of Product 1"
-              price={99.99}
-              imageSrc="phone.png"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <ShoppingCard
-              name="Product 1"
-              description="Description of Product 1"
-              price={99.99}
-              imageSrc="phone3.png"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <ShoppingCard
-              name="Product 1"
-              description="Description of Product 1"
-              price={99.99}
-              imageSrc="phone2.png"
-            />
-          </SwiperSlide>
+          {Array.isArray(slideData) &&
+            slideData.map((slide: Slides) => (
+              <SwiperSlide key={slide.id}>
+                <ShoppingCard
+                  name={slide.Name}
+                  price={slide.Price}
+                  imageSrc={slide.Images}
+                  onRatingClick={(rating: number) =>
+                    handleRatingClick(slide.id, rating)
+                  }
+                  rating={3}
+                />
+              </SwiperSlide>
+            ))}
         </Swiper>
       )}
     </>
   );
-} 
+};
 
 export default Flashsale;
