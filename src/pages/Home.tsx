@@ -67,7 +67,7 @@ function Home() {
           </div>
         </div>
       </div>
-      <div  className="md:ml-5  ml-4 ">
+      <div  className="md:ml-5 ">
         <Category/> 
       </div>
       </div>
