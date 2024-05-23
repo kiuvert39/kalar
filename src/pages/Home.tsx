@@ -10,12 +10,14 @@ import CountdownTimer from "../utilities/Countdown";
 import { Button, Typography } from "@material-tailwind/react";
 import Tag from "../utilities/Tag";
 import Category from "../components/Home/category";
+import Bestsale from "../components/Home/Bestsale";
+import Emhance from "../components/Home/Emhance";
 
 axios.defaults.withCredentials = true;
 
 function Home() {
   const [message, setMessage] = useState("");
-  const flashSaleEndTime = new Date("2024-05-20T00:00:00");
+  const flashSaleEndTime = new Date("2024-05-24T00:00:00");
 
   const { isLoggedIn } = useAuth();
   const [isUnauthorized, setIsUnauthorized] = useState<boolean>(false);
@@ -66,10 +68,12 @@ function Home() {
             </div>
           </div>
         </div>
-      </div>
-      <div  className="md:ml-5 ">
-        <Category/> 
-      </div>
+       </div>
+           <div  className="md:ml-5 ">
+            <Category/> 
+          </div>
+          <Bestsale/> 
+          <Emhance/> 
       </div>
 
       <ToastContainer />

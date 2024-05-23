@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import {
-  Navigation,
   Pagination,
-  Scrollbar,
-  A11y,
-  EffectCube,
   EffectCoverflow,
   FreeMode,
 } from "swiper/modules";
@@ -29,7 +25,7 @@ const Flashsale: React.FC = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768);
   const [slideData, setSlideData] = useState<Slides[]>([]);
 
-  const getProducts = async () => {
+const getProducts = async () => {
     try {
       const response = await axios.get(
         "http://localhost:5005/api/product/get-all_products"

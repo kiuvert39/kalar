@@ -4,15 +4,7 @@ import { Leftarrow } from "../images/Leftarrow";
 import { Rightarrow } from "../images/rightarrow";
 import { Computer } from "../images/computer";
 import { Swiper, SwiperSlide } from "swiper/react";
-import {
-  Navigation,
-  Pagination,
-  Scrollbar,
-  A11y,
-  EffectCube,
-  EffectCoverflow,
-  FreeMode,
-} from "swiper/modules";
+import { Pagination, FreeMode } from "swiper/modules";
 import "swiper/swiper-bundle.css";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -76,10 +68,9 @@ function Category() {
             className="mySwiper ml-3"
           >
             <section className="md:mt-16  flex  gap-10 md:justify-center ml-8  md:ml-8">
-            <SwiperSlide>
+              <SwiperSlide>
                 <div className="md:w-28 h-24 border-2  border-gray-300 items-center  hover:bg-red-500  group transition-colors  w-24 duration-500   cursor-pointer  mb-8">
                   <div className="md:ml-10 ml-8 mt-3  hover:fill-white">
-                    
                     <Computer />
                   </div>
                   <Typography
@@ -94,7 +85,6 @@ function Category() {
               <SwiperSlide>
                 <div className="md:w-28 h-24 border-2  border-gray-300 items-center  hover:bg-red-500  group transition-colors  w-24 duration-500   cursor-pointer  mb-8">
                   <div className="md:ml-10 ml-8 mt-3  hover:fill-white">
-                    
                     <Computer />
                   </div>
                   <Typography
@@ -109,7 +99,6 @@ function Category() {
               <SwiperSlide>
                 <div className="md:w-28 h-24 border-2  border-gray-300 items-center  hover:bg-red-500  group transition-colors  w-24 duration-500   cursor-pointer  mb-8">
                   <div className="md:ml-10 ml-8 mt-3  hover:fill-white">
-                    
                     <Computer />
                   </div>
                   <Typography
@@ -124,7 +113,6 @@ function Category() {
               <SwiperSlide>
                 <div className="md:w-28 h-24 border-2  border-gray-300 items-center  hover:bg-red-500  group transition-colors  w-24 duration-500   cursor-pointer  mb-8">
                   <div className="md:ml-10 ml-8 mt-3  hover:fill-white">
-                    
                     <Computer />
                   </div>
                   <Typography
@@ -139,7 +127,6 @@ function Category() {
               <SwiperSlide>
                 <div className="md:w-28 h-24 border-2  border-gray-300 items-center  hover:bg-red-500  group transition-colors  w-24 duration-500   cursor-pointer  mb-8">
                   <div className="md:ml-10 ml-8 mt-3  hover:fill-white">
-                    
                     <Computer />
                   </div>
                   <Typography
