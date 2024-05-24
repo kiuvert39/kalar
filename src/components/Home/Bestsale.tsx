@@ -21,7 +21,7 @@ interface Slides {
 }
 
 function Bestsale() {
-  const [slidesPerView, setSlidesPerView] = useState(3);
+  // const [slidesPerView, setSlidesPerView] = useState(3);
   const [buttonSize, setButtonSize] = useState<"sm" | "md" | "lg">("sm");
   const [slideData, setSlideData] = useState<Slides[]>([]);
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768);
@@ -49,10 +49,10 @@ function Bestsale() {
   const updateSlidesPerView = () => {
     const width = window.innerWidth;
     if (width >= 768) {
-      setSlidesPerView(5);
+      // setSlidesPerView(5);
       setButtonSize("md");
     } else {
-      setSlidesPerView(3);
+      // setSlidesPerView(3);
       setButtonSize("sm");
     }
   };

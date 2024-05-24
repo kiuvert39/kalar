@@ -13,8 +13,8 @@ import { useNavigate } from "react-router-dom";
 import { signout } from "../store/user/userSlice";
 import axios from "axios";
 import Navicon from "./Navicon";
-import { IoPersonOutline } from "react-icons/io5";
-import { FiShoppingCart } from "react-icons/fi";
+// import { IoPersonOutline } from "react-icons/io5";
+// import { FiShoppingCart } from "react-icons/fi";
 
 
 

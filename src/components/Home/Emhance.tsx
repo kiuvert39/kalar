@@ -2,21 +2,21 @@ import { Button, Typography } from "@material-tailwind/react";
 import { useState } from "react";
 
 function Emhance() {
-  const [slidesPerView, setSlidesPerView] = useState(3);
+  // const [slidesPerView, setSlidesPerView] = useState(3);
   const [buttonSize, setButtonSize] = useState<"sm" | "md" | "lg">("sm");
   const [imagesize, setImageSize] = useState(140);
   const updateSlidesPerView = () => {
     const width = window.innerWidth;
     if (width >= 768) {
-      setSlidesPerView(5);
+      // setSlidesPerView(5);
       setButtonSize("md");
       setImageSize(400);
     } else {
-      setSlidesPerView(3);
+      // setSlidesPerView(3);
       setButtonSize("sm");
     }
   };
-
+updateSlidesPerView()
   return (
     <>
       <div className="">
@@ -51,7 +51,7 @@ function Emhance() {
               </div>
             </div>
             <div className="ml-2  md:ml-8">
-              <a href="#">
+              <a href="/home">
                 <Button
                   placeholder={undefined}
                   className=""

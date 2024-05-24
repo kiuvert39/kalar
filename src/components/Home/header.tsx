@@ -47,7 +47,7 @@ function Header() {
             placeholder={undefined}
             className="text-white text-base pt-2 underline"
           >
-            <a href="#">shop now </a>
+            <a href="/home">shop now </a>
           </Typography>
           <VscArrowRight color="white" size={32} className="pt-3" />
         </div>
