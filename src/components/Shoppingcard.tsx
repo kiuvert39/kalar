@@ -16,7 +16,7 @@ const ShoppingCard: React.FC<Product> = ({ name, description, price, imageSrc, r
 
   return (
     <div
-    className="w-96 sm:w-56 bg-gray-300 shadow-lg rounded-lg overflow-hidden m-4 relative"
+    className="w-96 sm:w-56 bg-gray-300 md:w-62 shadow-lg rounded-lg overflow-hidden m-4 relative"
     onMouseEnter={() => setHovered(true)}
     onMouseLeave={() => setHovered(false)}
     >

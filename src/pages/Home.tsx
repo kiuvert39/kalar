@@ -1,49 +1,49 @@
-import React, { useEffect, useState } from "react";
+import React  from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import { useAuth } from "../context/AuthContext";
-import Toast from "../utilities/Authtoast";
+// import { useAuth } from "../context/AuthContext";
 import Header from "../components/Home/header";
 import Flashsale from "../components/Home/Flashsale";
 import CountdownTimer from "../utilities/Countdown";
-import { Button, Typography } from "@material-tailwind/react";
+import { Button,} from "@material-tailwind/react";
 import Tag from "../utilities/Tag";
 import Category from "../components/Home/category";
 import Bestsale from "../components/Home/Bestsale";
 import Emhance from "../components/Home/Emhance";
+import Expore from "../components/Home/Expore";
 
 axios.defaults.withCredentials = true;
 
 function Home() {
-  const [message, setMessage] = useState("");
+  // const [message, setMessage] = useState("");
   const flashSaleEndTime = new Date("2024-05-24T00:00:00");
 
-  const { isLoggedIn } = useAuth();
-  const [isUnauthorized, setIsUnauthorized] = useState<boolean>(false);
+  // const { isLoggedIn } = useAuth();
+  // const [isUnauthorized, setIsUnauthorized] = useState<boolean>(false);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const responds = await axios.get(
-          "http://localhost:5005/api/auth/dash",
-          {
-            withCredentials: true,
-          }
-        );
-        console.log("hello", responds);
-        setMessage(responds.data.message);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const responds = await axios.get(
+  //         "http://localhost:5005/api/auth/dash",
+  //         {
+  //           withCredentials: true,
+  //         }
+  //       );
+  //       console.log("hello", responds);
+  //       setMessage(responds.data.message);
 
-        setIsUnauthorized(!isLoggedIn);
-      } catch (error) {
-        console.error("Error registering user:", error);
-      }
-    };
-    fetchData();
-  }, [isLoggedIn]);
+  //       setIsUnauthorized(!isLoggedIn);
+  //     } catch (error) {
+  //       console.error("Error registering user:", error);
+  //     }
+  //   };
+  //   fetchData();
+  // }, [isLoggedIn]);
   return (
     <div  >
-      {isUnauthorized && <Toast message="User is not authenticated" />}
+      {/* {isUnauthorized && <Toast message="User is not authenticated" />} */}
       <Header />
       <div   className=" md:ml-24 md:mt-10 md:mr-24">
       <div>
@@ -60,7 +60,7 @@ function Home() {
           <div>
             <Flashsale />
             <div className=" flex justify-center mb-8 mt-8">
-              <a href="#">
+              <a href="/home">
                 <Button placeholder={undefined} className="" color="red">
                   View All Products
                 </Button>
@@ -74,6 +74,7 @@ function Home() {
           </div>
           <Bestsale/> 
           <Emhance/> 
+          <Expore/> 
       </div>
 
       <ToastContainer />
