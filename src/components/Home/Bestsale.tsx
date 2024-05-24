@@ -91,7 +91,7 @@ function Bestsale() {
               Best Selling Products
             </Typography>
             <div className=" flex justify-center  ">
-              <a href="#">
+              <a href="/home">
                 <Button
                   placeholder={undefined}
                   className=""
