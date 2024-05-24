@@ -1,5 +1,5 @@
 import { Button, Typography } from "@material-tailwind/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Emhance() {
   // const [slidesPerView, setSlidesPerView] = useState(3);
@@ -16,7 +16,12 @@ function Emhance() {
       setButtonSize("sm");
     }
   };
-updateSlidesPerView()
+  useEffect(() => {
+    updateSlidesPerView();
+    window.addEventListener("resize", updateSlidesPerView);
+    return () => window.removeEventListener("resize", updateSlidesPerView);
+  }, []);
+
   return (
     <>
       <div className="">
