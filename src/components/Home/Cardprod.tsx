@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import axios from "axios";
 import { getProducts, Product } from "../apis/getProducts.api";
 import { PropagateLoader } from "react-spinners";
+import { useNavigate } from 'react-router-dom';
 
 export const ProductCard: React.FC<Product> = ({
   name,
-  description,
   price,
   imageSrc,
   rating = 3,
@@ -69,8 +68,9 @@ export const ProductCard: React.FC<Product> = ({
 };
 
 const ProductCarousel: React.FC = () => {
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+  const [loading] = useState<boolean>(true);
+  const [error] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   const [slideData, setSlideData] = useState<Product[]>([]);
   useEffect(() => {
@@ -79,24 +79,24 @@ const ProductCarousel: React.FC = () => {
 
   const displayedProducts = slideData.slice(0, 8);
 
-  async function handleClickProduct(productId: string): Promise<void> {
-    if (!productId) {
-      console.error("Product ID is undefined");
-      return;
-    }
-    try {
-      const response = await axios.get(
-        `http://localhost:5005/api/product/${productId}`
-      );
+  // async function handleClickProduct(productId: string): Promise<void> {
+  //   if (!productId) {
+  //     console.error("Product ID is undefined");
+  //     return;
+  //   }
+  //   try {
+  //     const response = await axios.get(
+  //       `http://localhost:5005/api/product/${productId}`
+  //     );
 
-      console.log("data", response);
-    } catch (err) {
-      console.error("Failed to fetch product details:", err);
-    }
-  }
+  //     console.log("data", response);
+  //   } catch (err) {
+  //     console.error("Failed to fetch product details:", err);
+  //   }
+  // }
 
   const handleClick = async (productId: string) => {
-    await handleClickProduct(productId);
+    navigate(`/product/${productId}`);
   };
 
   const settings = {
@@ -152,7 +152,7 @@ const ProductCarousel: React.FC = () => {
     <div className="container slider-container mx-auto py-8">
       <Slider {...settings}>
         {displayedProducts.map((product, index) => (
-          <li key={product.id} onClick={() => handleClick(product.productId)}>
+          <li key={product.id} onClick={() => handleClick(product.productId)} className="transition-transform duration-300 transform hover:scale-105 cursor-pointer">
             <div key={index} className="px-2">
               <ProductCard
                 name={product.Name}

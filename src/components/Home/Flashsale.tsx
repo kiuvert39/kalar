@@ -22,7 +22,7 @@ interface Product {
 
 
 const Flashsale: React.FC = () => {
-  const [products, setProducts] = useState<Product[]>([]);
+  const [, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   // let [color, setColor] = useState("#ffffff");

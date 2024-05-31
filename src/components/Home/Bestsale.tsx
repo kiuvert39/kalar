@@ -1,7 +1,6 @@
 import React  from "react";
 import Tag from "../../utilities/Tag";
 import { Button, Typography } from "@material-tailwind/react";
-
 import "swiper/swiper-bundle.css";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -9,13 +8,10 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { useState, useEffect } from "react";
 import axios from "axios";
-
 import ProductCarousel from "./Cardprod";
 import { PropagateLoader } from "react-spinners";
-import { getProducts,} from "../apis/getProducts.api";
 
 
-var testvalue ='d147823c-ade1-4db9-a988-4d02ab29f3ea'
 export async function   handleClickProduct(productId: string){
   console.log("Product ID clicked:", productId);
   if (!productId) {
@@ -49,9 +45,9 @@ function Bestsale() {
   // const [slidesPerView, setSlidesPerView] = useState(3);
   const [buttonSize, setButtonSize] = useState<"sm" | "md" | "lg">("sm");
   // const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768);
-  const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+  const [products] = useState<Product[]>([]);
+  const [loading] = useState<boolean>(true);
+  const [error] = useState<string | null>(null);
   // let [color, setColor] = useState("#ffffff");
 
 

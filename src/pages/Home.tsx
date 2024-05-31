@@ -10,7 +10,7 @@ import { Button,} from "@material-tailwind/react";
 import Tag from "../utilities/Tag";
 import Category from "../components/Home/category";
 import Bestsale from "../components/Home/Bestsale";
-import Emhance from "../components/Home/Emhance";
+// import Emhance from "../components/Home/Emhance";
 import Expore from "../components/Home/Expore";
 import Newarrival from "../components/Home/Newarrival";
 
@@ -77,7 +77,7 @@ function Home() {
             <Category/> 
           </div>
           <Bestsale/> 
-          <Emhance/> 
+          {/* <Emhance/>  */}
           <Expore/> 
           <Newarrival/>
           {/* <Cardprod products={products }/> */}
