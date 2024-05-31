@@ -1,7 +1,52 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* index.css */
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
 
+.toast-message {
+  color: #fff;
+  font-size: 16px;
+  width: 74vw;
+ 
+}
+/* src/custom-toast-styles.css */
+.toast-message {
+  @apply text-white bg-gray-800 p-4 rounded-lg shadow-lg transition transform;
+  font-size: 16px;
+  width: 74vw;
+}
+
+/* Small devices (smaller than 640px) */
+@media (max-width: 640px) {
+  .toast-message {
+    @apply text-sm p-2;
+    font-size: 15px;
+    width: 70vw;
+    margin-top: 15px;
+    margin-left: 10px;
+  }
+}
+
+/* Transition effects */
+.Toastify__toast--enter {
+  @apply opacity-0 translate-y-2;
+}
+
+.Toastify__toast--enter-active {
+  @apply opacity-100 translate-y-0;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.Toastify__toast--exit {
+  @apply opacity-100 translate-y-0;
+}
+
+.Toastify__toast--exit-active {
+  @apply opacity-0 translate-y-2;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
 
 .image-section{
   width: 410px;
@@ -23,4 +68,45 @@
 
 .subnit-button{
   background-color: #616161;
+}
+.woman{
+  width: 530px;
+  height: 330px;
+}
+.word1{
+  top: 370px;
+  left: 20px;
+
+} 
+
+.word2{
+  top: 200px;
+  left: 25px;
+
+} 
+.w-lengthword1{
+  width: 10px;
+  margin-bottom: 2rem;
+} 
+
+.spray,.boom{
+  width: 1500px;
+  
+}
+
+.wordspray{
+  width: 33.2rem;
+  margin-bottom: 230px;
+ 
+}
+
+.spray2{
+  top: 60px;
+  margin-left: 24px;
+  
+}
+
+.mainplay{
+  height: 31.4rem;
+  width: 33rem;
 }

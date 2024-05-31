@@ -14,7 +14,7 @@ import Register from "./components/Auth/register";
 import Notfoundpage from "./pages/notfound.page";
 import Login from "./components/Auth/login";
 import { ToastContainer } from "react-toastify";
-// import Protected from "./components/protected";
+import Protected from "./components/protected";
 // import Footer from "./components/footer";
 
 function App() {

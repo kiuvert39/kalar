@@ -16,10 +16,10 @@ export const useLogin = () => {
       email: email,
       password: password,
     });
-
+    console.log("from login0",response);
     if (response) {
       dispatch(signinSuccess(response.data));
-      console.log(response);
+      console.log("from login2",response);
       navigate("/");
     }
   }

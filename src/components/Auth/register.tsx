@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useSignup } from "../../hooks/useSignup";
-
+import "../../App.css";
 
 function Register() {
   const {
@@ -36,25 +36,28 @@ function Register() {
    
   };
   return (
-    <div className="md:flex -gap-1">
+    <div className="md:flex mt-20 justify-center">
      <ToastContainer />
       <div
         className=" mt-7 pl-4 justify-center md:w-96 md:pt-4 rounded-3xl opacity-80
-   md:ml-96 md:mt-8 md:pb-5 md:bg-blue-gray-100 "
+    md:mt-8 md:pb-5 md:bg-blue-gray-100 "
       >
         <form onSubmit={handleSubmit(onSubmit)}>
         
-          <div className=" justify-center">
-            <div className=" -ml-2  w-auto sm:-ml-7 sm:justify-center mb-5">
-              <Typography
-                variant="h2"
-                className="text-xl pl-16 md:text-3xl w-full sm:text-4xl"
-                placeholder={undefined}
-              >
+        <div className=" -ml-2 w-auto sm:-ml-7 flex justify-center items-center">
+              <div className="text-xl  md:text-3xl w-full sm:text-4xl text-center">
                 Create An Account
-              </Typography>
+              </div>
             </div>
-          </div>
+          <div className="mt-2 mb-4 flex flex-col items-center sm:items-start justify-center mr-3 w-auto sm:max-w-92 sm:text-start sm:pl-5">
+                <Typography
+                  variant="paragraph"
+                  className="text-xs font-normal font-poppins leading-5 w-full text-center sm:text-left"
+                  placeholder={undefined}
+                >
+                  Let's get started by creating your account. Provide a strong password to keep your account safe.
+                </Typography>               
+              </div>
           <div className=" w-auto -ml-4 pl-4 pr-4 sm:mt-8 pb-5 ">
             <Controller
               name="Name"

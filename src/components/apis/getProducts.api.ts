@@ -1,19 +1,21 @@
 // api.ts
-import axios from 'axios';
+import axios from "axios";
 
-export  interface Product {
-  id: string;
-  Name: string;
-  Description: string;
+export interface Product {
+  [x: string]: any;
+  name: string;
+  Description?: string;
   Price: number;
-  Images: string; 
+  Images?: any;
 }
 
 interface ApiResponse {
   message: Product[];
 }
 
-export const getProducts = async (setSlideData: React.Dispatch<React.SetStateAction<Product[]>>) => {
+export const getProducts = async (
+  setSlideData: React.Dispatch<React.SetStateAction<Product[]>>
+) => {
   try {
     const response = await axios.get<ApiResponse>(
       "http://localhost:5005/api/product/get-all_products"

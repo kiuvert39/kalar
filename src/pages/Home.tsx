@@ -12,12 +12,16 @@ import Category from "../components/Home/category";
 import Bestsale from "../components/Home/Bestsale";
 import Emhance from "../components/Home/Emhance";
 import Expore from "../components/Home/Expore";
+import Newarrival from "../components/Home/Newarrival";
+
 
 axios.defaults.withCredentials = true;
 
 function Home() {
   // const [message, setMessage] = useState("");
   const flashSaleEndTime = new Date("2024-05-24T00:00:00");
+
+
 
   // const { isLoggedIn } = useAuth();
   // const [isUnauthorized, setIsUnauthorized] = useState<boolean>(false);
@@ -49,7 +53,7 @@ function Home() {
       <div>
         <div className=" md:mt-10 ">
           <section className="mt-10 pl-6 gap-8 md:flex  md:mb-8  md:mt-12  md:justify-self-start ">
-            <Tag tagName="  Today's" />            
+            <Tag tagName="Today's" />            
             <div className=" md:flex md:gap-5 md:mt-3">
               <div className="md:text-4xl">Flash sale:</div>
               <CountdownTimer flashSaleEndTime={flashSaleEndTime} />
@@ -75,6 +79,8 @@ function Home() {
           <Bestsale/> 
           <Emhance/> 
           <Expore/> 
+          <Newarrival/>
+          {/* <Cardprod products={products }/> */}
       </div>
 
       <ToastContainer />
