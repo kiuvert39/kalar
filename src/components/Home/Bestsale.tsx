@@ -25,7 +25,7 @@ export async function   handleClickProduct(productId: string){
     console.log("Product details:", response.data);
     
   } catch (err) {
-    console.error("Failed to fetch product details:", err);
+    console.error("Failed to fetch product details  id:", err);
 
   }
 };
