@@ -5,6 +5,9 @@ function Emhance() {
   // const [slidesPerView, setSlidesPerView] = useState(3);
   const [buttonSize, setButtonSize] = useState<"sm" | "md" | "lg">("sm");
   const [imagesize, setImageSize] = useState(140);
+
+
+  
   const updateSlidesPerView = () => {
     const width = window.innerWidth;
     if (width >= 768) {
