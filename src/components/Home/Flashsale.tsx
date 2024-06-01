@@ -24,7 +24,7 @@ interface Product {
 const Flashsale: React.FC = () => {
   const [, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
   // let [color, setColor] = useState("#ffffff");
 
 
@@ -51,6 +51,8 @@ const Flashsale: React.FC = () => {
 
     } catch (err) {
       setError("Failed to fetch products all ");
+      console.log(err);
+      
     } finally {
       setLoading(false);
     }
@@ -66,9 +68,9 @@ const Flashsale: React.FC = () => {
     return <div className="justify-center flex flex-col items-center"><PropagateLoader color="#36d7b7" /></div>;
   }
 
-  // if (error) {
-  // return <div className="justify-center flex flex-col items-center">{error}</div>;
-  // }
+  if (error) {
+  return <div className="justify-center flex flex-col items-center">{error}</div>;
+  }
  
   
  
