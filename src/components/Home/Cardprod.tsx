@@ -142,11 +142,11 @@ const ProductCarousel: React.FC = () => {
     );
   }
 
-  if (error) {
-    return (
-      <div className="justify-center flex flex-col items-center">{error}</div>
-    );
-  }
+  // if (error) {
+  //   return (
+  //     <div className="justify-center flex flex-col items-center">{error}</div>
+  //   );
+  // }
 
   return (
     <div className="container slider-container mx-auto py-8">

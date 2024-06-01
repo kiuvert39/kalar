@@ -136,11 +136,11 @@ function Bestsale() {
     );
   }
 
-  if (error) {
-    return (
-      <div className="justify-center flex flex-col items-center">{error}</div>
-    );
-  }
+  // if (error) {
+  //   return (
+  //     <div className="justify-center flex flex-col items-center">{error}</div>
+  //   );
+  // }
 
   return (
     <>

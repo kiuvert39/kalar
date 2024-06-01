@@ -50,7 +50,7 @@ const Flashsale: React.FC = () => {
       setProducts(updateData);
 
     } catch (err) {
-      setError("Failed to fetch products");
+      setError("Failed to fetch products all ");
     } finally {
       setLoading(false);
     }

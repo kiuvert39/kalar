@@ -33,8 +33,10 @@ function Category() {
     return () => window.removeEventListener("resize", updateSlidesPerView);
   }, []);
 
+  
+
   return (
-    <>
+      <>
       <div className="mt-10  md:mt-16">
         <section className="md:ml-2 md:mr-28 ml-3 ">
           <Tag tagName="categories" />

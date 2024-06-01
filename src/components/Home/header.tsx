@@ -56,7 +56,6 @@ function Header() {
         className="rounded-xl md:w-auto w-64 h-34 pt-4"
         placeholder={undefined}
       >
-        {" "}
         <img
           src={carouselData.images[imageIndex]}
           alt="phone"
