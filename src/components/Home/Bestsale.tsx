@@ -47,7 +47,7 @@ function Bestsale() {
   // const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768);
   const [products] = useState<Product[]>([]);
   const [loading] = useState<boolean>(true);
-  const [error] = useState<string | null>(null);
+
   // let [color, setColor] = useState("#ffffff");
 
 

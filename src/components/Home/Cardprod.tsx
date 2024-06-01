@@ -69,7 +69,7 @@ export const ProductCard: React.FC<Product> = ({
 
 const ProductCarousel: React.FC = () => {
   const [loading] = useState<boolean>(true);
-  const [error] = useState<string | null>(null);
+
   const navigate = useNavigate();
 
   const [slideData, setSlideData] = useState<Product[]>([]);
