@@ -14,7 +14,7 @@ export const useLogout = async () => {
 
   async function logout() {
     try{ 
-      const response = await axios.get("http://localhost:5005/api/auth/logout");
+      const response = await axios.get("https://kalar-sever.onrender.com/api/auth/logout");
     dispatch(signout())
     navigate('/Auth/login')
   }catch(error){ 

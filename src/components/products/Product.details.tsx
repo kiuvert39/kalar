@@ -27,7 +27,7 @@ function Productdetails() {
     const fetchProduct = async () => {
            try {
         const response = await axios.get(
-          `http://localhost:5005/api/product/${id}`
+          `https://kalar-sever.onrender.com/api/product/${id}`
         );
         const Productdetails  = response.data
         setMainImage(response.data.Images[0]); 

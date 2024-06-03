@@ -20,7 +20,7 @@ export async function   handleClickProduct(productId: string){
   }
   try {
     const response = await axios.get(
-      `http://localhost:5005/api/product/${productId}`
+      `https://kalar-sever.onrender.com/api/product/${productId}`
     );
     console.log("Product details:", response.data);
     

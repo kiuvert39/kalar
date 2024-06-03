@@ -8,7 +8,7 @@ export const useSignup = () => {
     
     async function signup(Name: string, email: string, password: string){
         setError(null)
-        await axios.post('http://localhost:5005/api/auth/register',{
+        await axios.post('https://kalar-sever.onrender.com/api/auth/register',{
             Name:Name, 
             email: email,
             password: password
