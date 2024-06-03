@@ -32,7 +32,7 @@ const Flashsale: React.FC = () => {
   const getProducts = async () => {
     try {
       var response = await axios.get(
-        "http://localhost:5005/api/product/get-all_products"
+        "https://kalar-sever.onrender.com/api/product/get-all_products"
       );
   
 

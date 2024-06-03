@@ -18,7 +18,7 @@ export const getProducts = async (
 ) => {
   try {
     const response = await axios.get<ApiResponse>(
-      "http://localhost:5005/api/product/get-all_products"
+      "https://kalar-sever.onrender.com/api/product/get-all_products"
     );
     const updateData = response.data.message.map((product) => ({
       ...product,
