@@ -24,7 +24,6 @@ export const getProducts = async (
       ...product,
       Images: product.Images[0],
     }));
-    console.log("images", updateData);
     setSlideData(updateData);
   } catch (error) {
     console.error(error);
