@@ -86,6 +86,7 @@ console.log('testing',currentUser);
       <div className=""><Navicon/></div>
     </ul>
   );
+  
   return (
     <div className="fixed top-0 w-full z-50 bg-white shadow-md">
 
@@ -180,6 +181,7 @@ console.log('testing',currentUser);
                   />
                 </svg>
               ) : (
+                <Link to="profile">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6"
@@ -193,6 +195,7 @@ console.log('testing',currentUser);
                     d="M4 6h16M4 12h16M4 18h16"
                   />
                 </svg>
+                </Link>
               )}
             </IconButton>
           </div>

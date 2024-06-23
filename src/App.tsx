@@ -1,10 +1,5 @@
 import "./App.css";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavbarMain from "./components/navbar";
 import Home from "./pages/Home";
 import Orders from "./components/Dashboard/Orders";
@@ -14,9 +9,12 @@ import Register from "./components/Auth/register";
 import Notfoundpage from "./pages/notfound.page";
 import Login from "./components/Auth/login";
 import { ToastContainer } from "react-toastify";
-// import Protected from "./components/protected";
 import Productdetails from "./components/products/Product.details";
+import Protected from "./components/protected";
+import ProfileEdit from "./components/Account/Profile";
+import Verification from "./components/Auth/VerifyOtp";
 // import Footer from "./components/footer";
+
 
 function App() {
   return (
@@ -24,18 +22,25 @@ function App() {
       <NavbarMain />
       <ToastContainer />
       <Routes>
-        {/* <Route element={<Protected />}> */}
-          <Route path="/" element={<Home />} />
-        {/* </Route> */}
+        <Route path="/" element={<Home />} />
+
         <Route path="/Auth/signup" element={<Register />} />
+
         <Route path="Auth/login" element={<Login />} />
-        <Route path="/product/:id" element={<Productdetails/>}/>
-        {/* <Route element={<Protected />}> */}
+        <Route element={<Protected  />}>
+          <Route path="/Auth/verify/otp" element={<Verification />} />
+        </Route> 
+
+        <Route path="/product/:id" element={<Productdetails />} />
+        <Route path="/profile" element={<ProfileEdit />} />
+
+        <Route element={<Protected/>}>
           <Route path="/dashboard" element={<Dashboard />}>
             <Route path="add_new_product" element={<NewProduct />} />
             <Route path="orders" element={<Orders />} />
           </Route>
-        {/* </Route> */}
+        </Route>
+
         <Route path="*" element={<Notfoundpage />} />
       </Routes>
       {/* <Footer /> */}

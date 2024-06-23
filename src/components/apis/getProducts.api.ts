@@ -13,6 +13,7 @@ interface ApiResponse {
   message: Product[];
 }
 
+
 export const getProducts = async (
   setSlideData: React.Dispatch<React.SetStateAction<Product[]>>
 ) => {

@@ -1,26 +1,46 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+interface User {
+    email: string;
+    // other user properties
+  }
 
-export const initialState = {
+  interface UserState {
+    currentUser: User | null;
+    error: boolean;
+    email: string | null;
+    isAuthenticated: boolean;
+  }
+  
+
+export const initialState: UserState  = {
     currentUser: null,
-    error: false
+    error: false,
+    email: null,
+    isAuthenticated: false,
 } 
+
 
 
  const userSlice = createSlice({
     name : 'user',
     initialState,
     reducers:{
-        signinSuccess: (state, action)=> {
-            state.currentUser = action.payload;
+        signinSuccess: (state, action: PayloadAction<{ user: User }>)=> {
+            state.currentUser = action.payload.user;
+            state.email = action.payload.user.email;
+            state.isAuthenticated = true;
             state.error = false
         },
         signinFailure: (state, action)=> {
             state.currentUser = action.payload;
+            state.isAuthenticated = false;
             state.error = false
         },
         signout:(state)=>{
             state.currentUser = null
+            state.isAuthenticated = false;
+            state.email = null;
         } 
      }
  })

@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { signinSuccess } from "../store/user/userSlice";
@@ -9,8 +8,10 @@ export const useLogin = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  async function login(email: string, password: string) {
+  const [,setLoginValideEmail] = useState<string | null>(null);
+  const [email,setEmail]= useState()
+ 
+const login = async(email: string, password: string) =>{
     setError(null);
     const response = await axios.post("https://kalar-sever.onrender.com/api/auth/login", {
       email: email,
@@ -19,10 +20,14 @@ export const useLogin = () => {
     console.log("from login0",response);
     if (response) {
       dispatch(signinSuccess(response.data));
-      console.log("from login2",response);
-      navigate("/");
+      setLoginValideEmail(response.data.message)
+      setEmail(response.data.user.email)
+      if(response.data.user.email){
+        navigate("/Auth/verify/otp");
+      }
+     
     }
   }
 
-  return { login, error };
+  return { login, error,email};
 };

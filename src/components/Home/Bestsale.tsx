@@ -30,6 +30,7 @@ export async function   handleClickProduct(productId: string){
   }
 };
 
+
 interface Product {
   name: string;
   description?: string;
