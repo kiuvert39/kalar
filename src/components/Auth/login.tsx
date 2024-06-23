@@ -15,10 +15,10 @@ const Login: React.FC = () => {
     register,
     handleSubmit,
     control,
-    reset,
     formState: { errors, isSubmitting },
   } = useForm<loginValue>({ resolver: zodResolver(loginSchema) });
   const { login } = useLogin();
+  
  
   // const [requestError, setRquestError] = useState("");
   // const  currentUser  = useSelector((state: any) => state.user.currentUser);
@@ -27,9 +27,7 @@ const Login: React.FC = () => {
  
   const onSubmit = async (data: loginValue, e: any) => {
     try {
-      const response = await login(data.email, data.password);
-      console.log("login  response",response);
-      reset();
+      await login(data.email, data.password);
     } catch (error: any) {
       if (error.response && error.response.status === 429) {
         const errorMessage = error.response.data.message;
@@ -40,7 +38,6 @@ const Login: React.FC = () => {
         });
         // setRquestError(errorMessage);
       }else {
-        // dispatch(signinFailure("An unexpected error occurred"));
         toast.error(error.response.data.message,{
           className: "toast-message"
         });
